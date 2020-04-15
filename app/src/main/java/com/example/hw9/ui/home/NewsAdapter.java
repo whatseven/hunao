@@ -1,56 +1,60 @@
 package com.example.hw9.ui.home;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.hw9.R;
 
-public class NewsAdapter extends RecyclerView.Adapter <NewsAdapter.MyViewHolder> {
-    private String[] mDataset;
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView textView;
-        public MyViewHolder(TextView v) {
-            super(v);
-            textView = v;
-        }
+public class NewsAdapter extends RecyclerView.Adapter {
+    private NewsData newsData;
+    NewsAdapter(NewsData readyData){
+        newsData = readyData;
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public NewsAdapter(String[] myDataset) {
-        mDataset = myDataset;
-    }
-
-    // Create new views (invoked by the layout manager)
+    @NonNull
     @Override
-    public NewsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                       int viewType) {
-        // create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_home, parent, false);///
-
-        MyViewHolder vh = new MyViewHolder(v);
-        return vh;
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.component_news_card, parent, false);
+        return new ListViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.textView.setText(mDataset[position]);
-
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ((ListViewHolder) holder).bindView(position);
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return newsData.getLength();
+    }
+
+    private class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView mItemTitle;
+        private TextView mItemTime;
+        private NetworkImageView mItemImage;
+
+        public ListViewHolder(View itemView){
+            super(itemView);
+            mItemTitle = (TextView) itemView.findViewById(R.id.card_title);
+            mItemImage = (NetworkImageView) itemView.findViewById(R.id.card_image);
+            mItemTime = (TextView) itemView.findViewById(R.id.card_time);
+            itemView.setOnClickListener(this);
+        }
+
+        public void bindView(int position){
+            mItemTitle.setText(newsData.titles.get(position));
+            mItemTime.setText(newsData.times.get(position) + " | " + newsData.sections.get(position));
+            mItemImage.setImageUrl(newsData.imgPaths.get(position), newsData.getImageLoader());
+        }
+
+        public void onClick(View view){
+
+        }
     }
 }

@@ -7,4 +7,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello bookmarks fragment</string>
+    <string name="text_location_permission">Allow NewsApp to access this device\'s location</string>
+    <string name="ok_location_permission">Allow</string>
+    <string name="title_location_permission">Allow NewsApp to access this device\'s location</string>
 </resources>

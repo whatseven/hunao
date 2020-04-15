@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/home_news_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/card_image"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:layout_margin="0dp" />
+
+            <RelativeLayout
+                android:layout_width="249dp"
+                android:layout_height="110dp"
+                android:layout_marginLeft="117dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/card_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="New text"
+                    android:textFontWeight="@android:integer/config_mediumAnimTime"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/card_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="New date"
+                    android:textSize="13dp" />
+
+            </RelativeLayout>
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_bookmark_border_24px"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

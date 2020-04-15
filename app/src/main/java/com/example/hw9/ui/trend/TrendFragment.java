@@ -22,7 +22,7 @@ public class TrendFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         trendViewModel =
                 ViewModelProviders.of(this).get(TrendViewModel.class);
-        View root = inflater.inflate(R.layout.activity_trending, container, false);
+        View root = inflater.inflate(R.layout.fragment_trending, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
         trendViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

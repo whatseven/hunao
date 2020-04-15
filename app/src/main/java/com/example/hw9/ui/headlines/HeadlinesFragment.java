@@ -22,7 +22,7 @@ public class HeadlinesFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(HeadlinesViewModel.class);
-        View root = inflater.inflate(R.layout.activity_headlines, container, false);
+        View root = inflater.inflate(R.layout.fragment_headlines, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
